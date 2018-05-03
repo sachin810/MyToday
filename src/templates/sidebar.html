@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MyToday</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+    <script src="{% static 'js/style.js' %}" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+   <!-- <link href="https://mdbootstrap.com/previews/docs/latest/css/bootstrap.min.css" rel="stylesheet">-->
+    <link href="https://mdbootstrap.com/previews/docs/latest/css/mdb.min.css" rel="stylesheet">
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">-->
+    <link href="https://fonts.googleapis.com/css?family=Gugi" rel="stylesheet">
+	<!-- Bootstrap -->
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+
+	<!-- Example docs (CSS for helping component example file)-->
+	<link href="https://propeller.in/docs/css/example-docs.css" type="text/css" rel="stylesheet">
+
+	<!-- Propeller card (CSS for helping component example file) -->
+	<link href="https://propeller.in/components/card/css/card.css" type="text/css" rel="stylesheet">
+
+	<!-- Propeller typography -->
+	<link href="https://propeller.in/components/typography/css/typography.css" type="text/css" rel="stylesheet">
+
+	<!-- Google Icon Font -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="https://propeller.in/components/icons/css/google-icons.css" type="text/css" rel="stylesheet">
+
+	<!-- Propeller dropdown -->
+	<link href="https://propeller.in/components/dropdown/css/dropdown.css" type="text/css" rel="stylesheet">
+
+	<!-- Propeller navbar -->
+	<link href="https://propeller.in/components/navbar/css/navbar.css" type="text/css" rel="stylesheet">
+
+	<!-- Propeller button  -->
+	<link href="https://propeller.in/components/button/css/button.css" type="text/css" rel="stylesheet">
+
+	<!-- Propeller list  -->
+	<link href="https://propeller.in/components/list/css/list.css" type="text/css" rel="stylesheet">
+
+</head>
+
+
+<body class="fixed-sn pink-skin">
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar pmd-navbar navbar-fixed-top pmd-z-depth minSizeClass" style="position:absolute;">
+      <div class="container-fluid">
+
+          <!-- Sidebar Toggle Button-->
+          <!-- Brand and toggle get grouped for better mobile display -->
+             <a href="javascript:void(0);" data-target="basicSidebar" data-placement="left" data-position="slidepush" is-open="true" is-open-width="1000" class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect pull-left margin-r8 pmd-sidebar-toggle"><i class="material-icons md-light">menu</i></a>
+             <a style="color: #fffccf" class="navbar-brand" href="{% url 'accounts:index' %}"><strong>&nbsp;&nbsp;<i class="navicon fa fa-book prefix white-text active"></i>&nbsp;<b>MyToday</b></strong></a>
+           <ul class="nav navbar-nav nav-item active">
+              {% if user.is_authenticated %}
+                  <li class=" navitem"><a style="color: #1b3249;size: A3" class="pmd-ripple-effect" href="{% url 'diary:index' %}">Diary</a></li>
+                  <li class=" navitem"><a style="color: #1b3249;size: A3" class="pmd-ripple-effect" href="{% url 'accounts:profile' %}">Profile</a></li>
+           </ul>
+
+            {% endif %}
+
+          <!-- Navbar Right icon -->
+              <div class="pull-right ">
+                  <ul></ul>
+                   <a type="submit" href="{% url 'accounts:logout' %}" class="btn btn-sm  pmd-btn-flat "><i class="fa fa-sign-out"></i> &nbsp;Logout</a>
+              </div>
+          <!-- /.navbar-collapse -->
+          </div>
+
+      <!-- /.container-fluid -->
+    </nav>
+    <!--Sidebar Section-->
+<section id="pmd-main">
+    <!-- Left sidebar -->
+    <aside id="basicSidebar" class="pmd-sidebar sidebar-default pmd-z-depth pmd-sidebar-left pmd-sidebar-left-fixed is-slidepush" role="navigation">
+        <ul class="nav pmd-sidebar-nav">
+            <!-- Starting bootstrap material design list -->
+
+            <div id="slide-out" class="side-nav sn-bg-4 fixed mdb-sidenav darken-4 side-nav-dark" style="transform: translateX(0px);">
+                <ul class="custom-scrollbar">
+                <!-- Logo -->
+                    <br>
+                    <br>
+                    <br>
+
+                    <li>
+                        <form class="search-form" role="search" action="" method="get">
+                            <div class="form-group md-form mt-0 pt-1 waves-light waves-effect waves-light">
+                                <input type="text" class="form-control" name="q" placeholder="Search">
+                            </div>
+                        </form>
+                    </li>
+                    <!--list-->
+
+                    <li>
+                    {% for obj in contacts %}
+                        <ul class="custom-scrollbar">
+                            <li>
+                                <ul class="collapsible collapsible-accordion">
+                                <li class=""><a href="{{ obj.get_absolute_url }}" class="collapsible-header waves-effect arrow-r"><i class="fa fa-bookmark"></i>{{obj.timestamp}}</a></li>
+
+                            </li>
+                        </ul>
+                    </li>
+                    </ul>
+                   {% endfor %}
+                </ul>
+                <div class="sidenav-bg "></div>
+<!--Pagination-->
+<nav aria-label="pagination">
+    <ul class="pagination pg-blue social ">
+        {% if contacts.has_next %}
+            {% if contacts.has_previous %}
+            <li class="page-item active">
+                <a class="page-link" href="?page={{ contacts.previous_page_number }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            {% endif %}
+        <li class="page-item active">
+            <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="page-item"><a class="page-link" href="?page=2">2</a></li>
+        <li class="page-item"><a class="page-link" href="?page=3">3</a></li>
+        <li class="page-item"><a class="page-link" href="?page=4">4</a></li>
+        <li class="page-item"><a class="page-link" href="?page=5">5</a></li>
+        <!--Arrow right-->
+        <li class="page-item">
+            <a class="page-link" href="?page={{ contacts.next_page_number }}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+        {% endif %}
+
+    </ul>
+</nav>
+<!-- End Pagination-->
+            </div>
+        </ul>
+    </aside>
+    <!-- Start Content -->
+
+    <div class="pmd-content custom-pmd-content" id="content">
+        <h2 class="headline"></h2>
+        {% block content %}
+        <!--Page content-->
+        {% endblock %}
+    </div>
+    <div class="pmd-sidebar-overlay"></div>
+</section>
+
+
+
+<!-- Jquery js -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+<!-- Bootstrap js -->
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Propeller Global js -->
+<script src="https://propeller.in/components/global/js/global.js"></script>
+
+<!-- Propeller Sidebar js -->
+<script type="text/javascript" language="javascript" src="http://propeller.in/components/sidebar/js/sidebar.js"></script>
+
+<!-- Propeller Dropdown js -->
+<script type="text/javascript" language="javascript" src="https://propeller.in/components/dropdown/js/dropdown.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.2.slim.min.js"></script>-
+ <!--Marked (markdown)-->
+<script type="text/javascript" language="JavaScript" src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.19/marked.min.js"></script>
+<!--tinymc pagedown cdn-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.7.11/plugins/advlist/plugin.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $(".content-marked").each(function(){
+        var mark = $(this).text()
+        var content = marked(mark)
+        $(this).html(content)
+    });
+    $('.content-marked img').each(function () {
+        $(this).addClass('img-responsive');
+    })
+    var contentinput = $('#id_content');
+
+    function setcontent(value) {
+        var markedcontent = marked(value)
+        $('#preview-content').html(markedcontent)
+        $('#preview-content img').each(function () {
+            $(this).addClass('img-responsive')
+        })
+    }
+    setcontent(contentinput.val())
+    contentinput.keyup(function () {
+        var newcontent = $(this).val()
+        var final = setcontent(newcontent)
+        console.log(final)
+    })
+     var titleinput = $('#id_title');
+
+    function settitle(value) {
+        $('#preview-title').text(value)
+    }
+    settitle(titleinput.val())
+    titleinput.keyup(function () {
+        var newcontent = $(this).val()
+        settitle(newcontent)
+    })
+});
+</script>
+
+</body>
+</html>

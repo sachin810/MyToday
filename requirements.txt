@@ -1,0 +1,5 @@
+django
+rest_framework
+pagedown
+crispy_forms
+markdown

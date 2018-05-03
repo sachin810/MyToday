@@ -1,0 +1,25 @@
+{% extends 'sidebar.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+{{ form.media }}
+
+
+<div class="container-fluid">
+     <div class="row">
+         <div class="col-sm- col-lg-6 col-md-6">
+             <h2>Update :</h2>
+             <form class="form-group" method="post">
+                 {% csrf_token %}
+                 {{ form.as_p  }}
+                 <div class="row">
+                       <button type="submit" class="btn btn-success"><li class="fa fa-save"></li>Save Changes</button>
+                     <a href="{% url 'diary:delete' instance.id %}" class="btn btn-danger"><li class="fa fa-trash"></li>&nbsp;Delete</a>
+                 </div>
+             </form>
+         </div>
+     </div>
+
+</div>
+
+{% endblock %}

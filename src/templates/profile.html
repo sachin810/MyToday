@@ -1,0 +1,98 @@
+{% extends 'sidebar.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-lg-6">
+            <br>
+            <br>
+            <div class="card style1" style="max-width: 10cm;min-height: 10cm">
+                <div class="card-body">
+                    <div class="text-center">
+                        <h3 style="background: #1b3249;color: #fffccf;border-radius: 5px;min-height: 1cm" class="white-text"><i class="fa fa-user white-text"></i> Profile :</h3>
+                        <hr class="hr-light">
+                    </div>
+                    <br>
+                    <br>
+                    <div class="profile" >
+                        <h2 style="color: black;border-radius: 5px;background: white"><strong>Username: {{profile.username}}</strong></h2>
+                        <h2 style="color: black;border-radius: 5px;background: white"><strong>Email: {{profile.email}}</strong></h2>
+                        <h2 style="color: black;border-radius: 5px;background: white"><strong>First Name: {{profile.first_name}} </strong></h2>
+                        <h2 style="color: black;border-radius: 5px;background: white"><strong>Last Name: {{profile.last_name}}</strong></h2>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-lg-6">
+            <br>
+            <br>
+           <div class="card style1" data-wow-delay="0.3s" style="max-width: 10cm;min-height: 10cm">
+                            <div class="card-body">
+                                <!--Header-->
+                                <div class="text-center">
+                                    <h3 style="background: #1b3249;color: #fffccf;border-radius: 5px;min-height: 1cm" class="white-text"><i class="fa fa-user white-text"></i> Edit Profile :</h3>
+                                    <hr class="hr-light">
+                                </div>
+                                <form action="" method="post">
+                                    {% csrf_token %}
+                                <!--Body-->
+                                <div class="md-form">
+                                    <i class=" prefix white-text active"></i>
+                                    {{form.username}}
+                                    <label for="form3" class="active">New username</label>
+                                </div>
+                                <div class="md-form">
+                                    <i class=" prefix white-text active"></i>
+                                    {{form.first_name}}
+                                    <label for="form2" class="active">First Name</label>
+                                </div>
+
+                                <div class="md-form">
+                                    <i class=" prefix white-text active"></i>
+                                    {{form.last_name}}
+                                    <label for="form4" class="active">Last Name</label>
+                                </div>
+                                <div class="md-form">
+                                    <i class=" prefix white-text active"></i>
+                                    {{form.new_password}}
+                                    <label for="form4" class="active">New Password</label>
+                                </div>
+                                <div class="md-form">
+                                    <i class=" prefix white-text active"></i>
+                                    {{form.confirm_new_password}}
+                                    <label for="form4" class="active">Confirm New password</label>
+                                </div>
+                                    <br>
+                                <div class="text-center">
+                                    <button class="btn btn-indigo" type="submit">Save Changes</button> </form>
+
+                                </div>
+               <br>
+
+                            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+
+{% block body %}
+<br>
+<br>
+<!--Intro Section-->
+<section class="view intro-2 hm-gradient">
+    <div class="full-bg-img">
+        <div class="container flex-center">
+            <div class="d-flex align-items-center content-height">
+                <div class="row flex-center pt-5 mt-3">
+                    <div class="col-md-6 text-center text-md-left mb-5">
+                        <div class="white-text">
+                            <h1 class="h1-responsive font-weight-bold wow fadeInLeft animated" data-wow-delay="0.3s" style="visibility: visible; animation-name: fadeInLeft; animation-delay: 0.3s;">Sign up right now! </h1>
+                            <hr class="hr-light wow fadeInLeft animated" data-wow-delay="0.3s" style="visibility: visible; animation-name: fadeInLeft; animation-delay: 0.3s;">
+                            <h6 class="wow fadeInLeft animated" data-wow-delay="0.3s">Your personal life journal, simple and convenient in use. Private Diary will help to you to record your life. It will save all your emotions and interests. You can entrust him all secrets.</h6>
+                            <br>
+                            <a class="btn btn-outline-white wow fadeInLeft animated" data-wow-delay="0.3s">Learn more</a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-xl-5 offset-xl-1">
+                        <!--Form-->
+                        <div class="card wow fadeInRight animated style1" data-wow-delay="0.3s">
+                            <div class="card-body">
+                                <!--Header-->
+                                <div class="text-center">
+                                    <h3 class="white-text"><i class="fa fa-user white-text"></i> Register:</h3>
+                                    <hr class="hr-light">
+                                </div>
+                                <form action="" method="post">
+                                    {% csrf_token %}
+                                <!--Body-->
+                                <div class="md-form">
+                                    <i class="fa fa-user prefix white-text active"></i>
+                                    {{form.username}}
+                                    <label for="form3" class="active">Your username</label>
+                                </div>
+                                <div class="md-form">
+                                    <i class="fa fa-envelope prefix white-text active"></i>
+                                    {{form.email}}
+                                    <label for="form2" class="active">Your email</label>
+                                </div>
+
+                                <div class="md-form">
+                                    <i class="fa fa-lock prefix white-text active"></i>
+                                    {{form.password}}
+                                    <label for="form4" class="active">Your password</label>
+                                </div>
+                                <br>
+                                <div class="text-center">
+                                    <button class="btn btn-indigo" type="submit">Sign up</button> </form>
+                                    <hr class="hr-light mb-3 mt-4">
+
+                                        <div class="inline-ul text-center d-flex justify-content-center">
+                                            <a class="icons-sm tw-ic"><i class="fa fa-twitter white-text"></i></a>&nbsp; &nbsp; &nbsp; &nbsp;
+                                            <a class="icons-sm li-ic"><i class="fa fa-linkedin white-text"> </i></a>&nbsp; &nbsp; &nbsp; &nbsp;
+                                            <a class="icons-sm ins-ic"><i class="fa fa-instagram white-text"> </i></a>
+                                        </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!--/.Form-->
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+
+{% endblock %}
